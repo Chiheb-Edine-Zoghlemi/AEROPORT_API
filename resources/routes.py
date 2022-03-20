@@ -1,9 +1,5 @@
-from flask_restful import Resource
-from flask import Response
-from database.models import Routes
+from .api import RoutesApi, RouteApi
 
-class Routes(Resource):
-    def get(self):
-        routes = Routes.objects().to_json()
-        return Response(routes, mimetype="application/json", status=200)
-
+def initialize_routes(api):
+    api.add_resource(RoutesApi, '/routes')
+    api.add_resource(RouteApi, '/route/<id>')
