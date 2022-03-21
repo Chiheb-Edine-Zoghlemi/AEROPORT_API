@@ -18,7 +18,7 @@ api = Api(app)
 app.config['SECRET_KEY'] = os.environ.get("api-token")
 
 # Database connection
-app.config['MONGODB_SETTINGS'] = {'host': 'mongodb://localhost:5050/sample'}
+app.config['MONGODB_SETTINGS'] = {'host': 'mongodb://localhost:27017/sample'}
 
 # Enbale crossheader 
 CORS(app)
@@ -32,4 +32,4 @@ initialize_routes(api)
 
 # Run the server 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True, threaded=True)
+    app.run(host='0.0.0.0', port=3000, debug=True, threaded=True)
