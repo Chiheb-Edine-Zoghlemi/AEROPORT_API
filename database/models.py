@@ -1,5 +1,5 @@
 from .db import db
-
+from marshmallow import Schema, fields
 
 # Airline Model
 class airline(db.EmbeddedDocument):

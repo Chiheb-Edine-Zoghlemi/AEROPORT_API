@@ -2,6 +2,7 @@ from flask_restful import Resource
 from flask import Response, request, jsonify
 from database.models import routes
 from mongoengine.queryset.visitor import Q
+from flask_apispec import marshal_with, doc, use_kwargs
 # Path endpoint 
 class PathApi(Resource):
     def post(self):
@@ -54,3 +55,6 @@ class RouteApi(Resource):
     def get(self, id):
         route = routes.objects.first_or_404(id=id)
         return Response(route.to_json(), mimetype="application/json", status=200)
+
+class DocsApi(Resource):
+    pass

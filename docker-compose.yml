@@ -1,0 +1,7 @@
+version: '2'
+services:
+  routes-api:
+    build: .
+    ports:
+      - "5000:5000"
+    network_mode: "host"
