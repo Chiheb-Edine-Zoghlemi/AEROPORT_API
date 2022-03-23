@@ -12,6 +12,7 @@ from flask_apispec.extension import FlaskApiSpec
 app = Flask(__name__ )
 api = Api(app)
 
+# OPENAPI CONFIG
 app.config.update({
     'APISPEC_SPEC': APISpec(
         title='Awesome Project',
@@ -34,7 +35,7 @@ CORS(app)
 initialize_db(app)
 
 # Initialize the endpoints 
-initialize_routes(api)
+initialize_routes(api, docs)
 
 
 # Run the server 
