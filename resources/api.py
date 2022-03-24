@@ -70,7 +70,7 @@ class RoutesApi(MethodResource, Resource):
 
 class RouteApi(MethodResource, Resource):
     # Update route
-    @marshal_with(route_schema, description='Everything is perfect :)', code=200)
+    @marshal_with(message_schema, description='Everything is perfect :)', code=200)
     @marshal_with(message_schema, description='Route Not found', code=404)
     @marshal_with(message_schema, description='Error while Updating existing  route ', code=500)
     @doc(description='Put route Endpoint updates a route based on the provided id', tags=['route'])
