@@ -75,11 +75,13 @@ class RouteApi(MethodResource, Resource):
     @marshal_with(message_schema, description='Error while Updating existing  route ', code=500)
     @doc(description='Put route Endpoint updates a route based on the provided id', tags=['route'])
     @use_kwargs(route_schema, location='json')
-    def put(self, id_route, **body):
+    def put(self,**body):
+        id_route = body.pop('id')
         try:
             route = routes.objects.get_or_404(id=id_route)
-            updated_route = route.update(**body)
-            return Response(updated_route.to_json(), mimetype="application/json", status=200)
+            route.update(**body)
+           
+            return {'message': 'success'}, 200
 
         except Exception as e:
             return {'message': e}, 500
@@ -89,9 +91,9 @@ class RouteApi(MethodResource, Resource):
     @marshal_with(message_schema, description='Route Not found', code=404)
     @marshal_with(message_schema, description='Error while Deleting   route ', code=500)
     @doc(description='Delete route Endpoint delete a specific route based on the provided id', tags=['route'])
-    def delete(self, id_route):
+    def delete(self, **args):
         try:
-            route = routes.objects.get_or_404(id=id_route)
+            route = routes.objects.get_or_404(id=args.get('id'))
             route.delete()
             return {'message': 'success'}, 200
         except Exception as e:
@@ -103,9 +105,9 @@ class RouteApi(MethodResource, Resource):
     @marshal_with(message_schema, description='Error while fetching   route data ', code=500)
     @doc(description='Get route Endpoint returns a specific route information\'s based on the provided id ',
          tags=['route'])
-    def get(self, id_route):
+    def get(self, **args):
         try:
-            route = routes.objects.get_or_404(id=id_route)
+            route = routes.objects.get_or_404(id=args.get('id'))
             return Response(route.to_json(), mimetype="application/json", status=200)
         except Exception as e:
             return {'message': e}, 500
